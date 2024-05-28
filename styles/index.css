@@ -1,0 +1,98 @@
+main section {
+    text-align: center;
+}
+
+.description p,
+.description {
+    margin-bottom: 3em;
+}
+
+.figures {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+figure {
+    text-align: center;
+    margin: 2em 0;
+}
+
+figure img {
+    max-width: 300px;
+    border-radius: 10px;
+    border: solid white 5px;
+    margin: auto;
+}
+
+.biggerimg {
+    max-width: 400px;
+}
+
+section {
+    list-style-type: none;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+section a {
+    color: black;
+    background-color: white;
+    padding: 0.5em 1.5em;
+    border-width: 5px;
+    border-bottom-width: 10px;
+    border-style: solid;
+    border-color: gray;
+    text-decoration: none;
+    border-radius: 20px;
+
+}
+
+section ol {
+    border: solid 5px gray;
+    box-shadow: 0 0 0 5px white;
+    border-radius: 10px;
+    padding: 2em;
+}
+
+ol li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
+/* Styles for smaller screens */
+@media screen and (max-width: 750px) {
+
+    .biggerimg {
+        display: none;
+
+    }
+}
+
+/* Styles for smaller screens */
+@media screen and (max-width: 760px) {
+    section ol {
+        margin: 0 1em;
+    }
+}
+
+/* Styles for smaller screens */
+@media screen and (max-width: 1209px) {
+
+    .figures img {
+        max-width: 200px
+    }
+
+    .biggerimg {
+        max-width: 250px;
+
+    }
+
+    figure {
+        padding: 0;
+        margin: 0.5em 0;
+    }
+}
