@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./styles/overlay.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Monda&display=swap">
     <script src="https://kit.fontawesome.com/dd8e71c06a.js" crossorigin="anonymous"></script>
+    <script src="./scripts/language.js"></script>
 </head>
 
 <body>
@@ -20,17 +21,26 @@
             </a>
         </header>
         <ul>
-            <li><a href="./menu.html">Menu</a></li>
+            <li><a id="navMenu" href="./menu.html">Menu</a></li>
             <li><a id="openFranchise" href="#">Franchise</a></li>
             <li><a id="openAboutus" href="#">About Us</a></li>
-            <li><a target="_blank" href="https://maps.app.goo.gl/iTBQ7Zn7iPnnDpqy5">Find Nearest</a></li>
+            <li><a id="navMap" target="_blank" href="https://maps.app.goo.gl/iTBQ7Zn7iPnnDpqy5">Find Nearest</a></li>
         </ul>
         <div class="orderOnline">
-            <a class="ubereats" target="_blank"
+            <a id="navUber" class="ubereats" target="_blank"
                 href="https://www.ubereats.com/ca/store/go-dough/mhN9Y3XDVwGpJzyAmjCPtA">Order on
                 UberEats</a>
-            <a class="skipthedishes" target="_blank" href="https://www.skipthedishes.com/go-dough-platinum-dr">Order on
+            <a id="navSTD" class="skipthedishes" target="_blank"
+                href="https://www.skipthedishes.com/go-dough-platinum-dr">Order on
                 SkipTheDishes</a>
+        </div>
+        <div id="language-selector">
+            <button id="language-btn"><i class="fa-solid fa-globe"></i></button>
+            <div id="language-options" style="display: none;">
+                <button class="lang-option" data-lang="en">English</button>
+                <button class="lang-option" data-lang="fr">Français</button>
+                <button class="lang-option" data-lang="ar">العربية</button>
+            </div>
         </div>
     </nav>
     <section class="slideshow-container">
@@ -68,11 +78,12 @@
     </section>
     <main>
         <section class="description">
-            <h1>Welcome to GoDough</h1>
-            <p>Welcome to GoDough, gastronomic haven where Lebanese customs and tastes abound. Savor a unique dining
+            <h1 id="welcome">Welcome to GoDough</h1>
+            <p id="welcomeText">Welcome to GoDough, gastronomic haven where Lebanese customs and tastes abound. Savor a
+                unique dining
                 experience that combines the friendliness of Lebanese hospitality with a fine meal made from scratch
                 with the freshest ingredients.</p>
-            <a href="./menu.html">See Menu</a>
+            <a id="seeMenu" href="./menu.html">See Menu</a>
         </section>
         <div class="figures">
             <figure>
@@ -85,16 +96,17 @@
                 <img class="biggerimg" src="./images/kaake tomato pickle.jpg" alt="Glorious food">
             </figure>
         </div>
+
         <section class="hoursOfOperation">
-            <h1>Hours of Operation</h1>
+            <h1 id="hoursTitle">Hours of Operation</h1>
             <ol>
-                <li>Monday <span>Closed</span></li>
-                <li>Tuesday <span>9am - 10pm</span></li>
-                <li>Wednesday <span>9am - 10pm</span></li>
-                <li>Thursday <span>9am - 10pm</span></li>
-                <li>Friday <span>9am - 12am</span></li>
-                <li>Saturday <span>9am - 12am</span></li>
-                <li>Sunday <span>9am - 10pm</span></li>
+                <li>Monday <span id="hoursMon">Closed</span></li>
+                <li>Tuesday <span id="hoursTue">9am - 10pm</span></li>
+                <li>Wednesday <span id="hoursWed">9am - 10pm</span></li>
+                <li>Thursday <span id="hoursThu">9am - 10pm</span></li>
+                <li>Friday <span id="hoursFri">9am - 12am</span></li>
+                <li>Saturday <span id="hoursSat">9am - 12am</span></li>
+                <li>Sunday <span id="hoursSun">9am - 10pm</span></li>
             </ol>
         </section>
     </main>
@@ -102,45 +114,49 @@
     <div id="franchiseOverlay" class="overlay">
         <a href="#" id="closeFranchise" class="close-btn">&times;</a>
         <div class="overlay-content">
-            <h1>Our potential franchise should:</h1>
+            <h1 id="franchiseTitle">Our potential franchise should:</h1>
             <ol>
-                <li>- Have access to a suitable location</li>
-                <li>- Be able to invest</li>
-                <li>- Have enough liquidity to open multiple outlets with a specific period of time</li>
-                <li>- Have the passion to expand the brand</li>
-                <li>- Be an experienced manager of a successful business and possess adequate resources
+                <li id="franchiseReq1">- Have access to a suitable location</li>
+                <li id="franchiseReq2">- Be able to invest</li>
+                <li id="franchiseReq3">- Have the passion to expand the brand</li>
+                <li id="franchiseReq4">- Be an experienced manager of a successful business and possess adequate
+                    resources
                     (People,connection, knowledge)</li>
-                <li>- Have a good Business reputation</li>
-                <li>- Be ready to accept and meet our brand standards</li>
-                <li>- Have a minimum of 5 years of experience in franchising</li>
+                <li id="franchiseReq5">- Be ready to accept and meet our brand standards</li>
             </ol>
-            <p>Interested?</p>
-            <p>Email us: godough@gmail.com</p>
+            <p id="franchiseInterest">Interested?</p>
+            <p id="franchiseEmail">Email us: godough@gmail.com</p>
         </div>
     </div>
 
     <div id="aboutusOverlay" class="overlay">
         <a href="#" id="closeAboutus" class="close-btn">&times;</a>
         <div class="overlay-content aboutus">
-            <h1>About Go Dough and the Owners behind it</h1>
-            <p>Welcome to Go Dough, where tradition meets innovation in the heart of Canada. Our journey began in the
-                bustling streets of Tripoli, Lebanon, where our family has deep roots in the art of traditional baking.
-                Faced with economic hardships and corruption in our homeland, we made the difficult decision to leave
+            <h1 id="aboutTitle">About Go Dough and the Owners behind it</h1>
+            <p id="aboutText1">Welcome to Go Dough, where tradition meets innovation in the heart of Canada. Our journey
+                began in the
+                bustling streets of Tripoli, Lebanon, where generations of traditions and recipes have been passed down.
+                Faced with economic hardships, we made the difficult decision to leave
                 everything behind and seek a new beginning in Canada, following the path laid by our sons.</p>
-            <p>Despite the challenges of starting anew in a foreign land, one thing remained constant: our dream of
+            <p id="aboutText2">Despite the challenges of starting anew in a foreign land, one thing remained constant:
+                our dream of
                 sharing the flavors of Lebanon with the world. We knew that opening a bakery was not just a business
                 venture for us; it was a way to preserve our heritage, connect with our community, and introduce
                 Canadians to the rich culinary traditions of our homeland.</p>
-            <p>To ensure that our offerings were truly authentic, we embarked on a journey of discovery and learning. We
-                traveled across Lebanon, from the bustling markets of Beirut to the serene valleys of the Bekaa, seeking
+            <p id="aboutText3">To ensure that our offerings were truly authentic, we embarked on a journey of discovery
+                and learning. We
+                traveled across Lebanon, from the bustling markets of Beirut to the charming streets of Tripoli, seeking
                 out the best ingredients and techniques. We studied under master bakers who have been perfecting their
-                craft for generations, honing our skills and refining our recipes to bring you the most delicious and
+                craft for generations, gathered inspiration from local artisans, honing our skills and refining our
+                recipes to bring you the most delicious and
                 authentic Lebanese delicacies.</p>
-            <p>At Go Dough, we pride ourselves on our commitment to quality and authenticity. Our kaake and manousheh
+            <p id="aboutText4">At Go Dough, we pride ourselves on our commitment to quality and authenticity. Our kaaké
+                and man'oushé
                 are made using traditional methods and recipes passed down through generations, ensuring that each bite
                 is a taste of Lebanon. But we also believe in innovation, and we are constantly exploring new flavors
                 and ideas to keep our menu fresh and exciting.</p>
-            <p>Since opening our doors in the dusk of 2023, we have been overwhelmed by the warm reception from the
+            <p id="aboutText5">Since opening our doors in the dusk of 2023, we have been overwhelmed by the warm
+                reception from the
                 community. We are grateful for the opportunity to share a piece of our culture with you and look forward
                 to welcoming you to Go Dough, where every bite tells a story of tradition, passion, and love.</p>
         </div>
@@ -149,23 +165,27 @@
     <footer>
         <div class="footerContainer">
             <img src="./images/logo.png" alt="Go Dough Logo">
-            <span class="copyright">&copy 2024 Right Reserved</span>
+            <span id="copyright" class="copyright">&copy 2024 Right Reserved</span>
         </div>
         <div class="footerContainer">
-            <span>Location</span>
+            <span id="location">Location</span>
             <address>
                 <span>3480 Platinum Drive, Unit 107</span>
                 <span>Mississauga, Ontario, L5M 2S4</span>
             </address>
         </div>
         <div class="footerContainer">
-            <span>Follow Us</span>
-            <a target="_blank" href="https://www.instagram.com/godoughmississauga?igsh=M3h0YnFkYnJrYWZ3"><i
-                    class="fa-brands fa-instagram"></i></a>
+            <span id="followUs">Follow Us</span>
+            <div class="footerRow">
+                <a target="_blank" href="https://www.instagram.com/godoughmississauga?igsh=M3h0YnFkYnJrYWZ3"><i
+                        class="fa-brands fa-instagram"></i></a>
+                <a target="_blank" href="https://www.tiktok.com/@go.doughsauga"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
         </div>
     </footer>
 
     <script src="./scripts/overlay.js"></script>
+
 </body>
 
 </html>

@@ -69,6 +69,47 @@ nav a:hover {
     background-color: #c06711;
 }
 
+#language-selector button {
+    display: block;
+    font-family: 'Monda', sans-serif;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#language-selector i {
+    font-size: 2em;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+#language-selector i:hover {
+    color: #e9a759;
+}
+
+#language-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#language-options button {
+    cursor: pointer;
+    width: 100%;
+    margin: 0.5em auto;
+    border: solid 2px white;
+    border-radius: 10px;
+    padding: 0.1em 0.5em;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+#language-options button:hover {
+    color: #e9a759;
+    border-color: #e9a759;
+}
+
 header a {
     position: relative;
     width: fit-content;
@@ -281,6 +322,13 @@ footer img {
     max-width: 200px;
 }
 
+footer .footerRow {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    justify-content: space-between;
+}
+
 address {
     color: #777;
 }
@@ -334,5 +382,17 @@ address {
     .orderOnline {
         margin: 0;
         margin-top: 20px;
+    }
+
+    #language-selector button {
+        display: inline;
+    }
+
+    #language-options {
+        flex-direction: row;
+    }
+
+    #language-options button {
+        width: 100%;
     }
 }
