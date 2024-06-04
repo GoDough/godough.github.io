@@ -1,5 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    function setLanguageCookie(language, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = "selectedLang=" + language + ";" + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    const selectedLang = getCookie('selectedLang');
+
     const languageBtn = document.getElementById('language-btn');
     const languageOptions = document.getElementById('language-options');
     const langOptions = document.querySelectorAll('.lang-option');
@@ -12,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     langOptions.forEach(option => {
         option.addEventListener('click', (e) => {
             const selectedLang = e.target.getAttribute('data-lang');
+            setLanguageCookie(selectedLang);
             applyTranslations(selectedLang);
             languageOptions.style.display = 'none';
             languageBtn.style.display = 'block';
@@ -379,118 +405,19 @@ document.addEventListener('DOMContentLoaded', () => {
     function applyTranslations(lang) {
         document.documentElement.lang = translations[lang].setting;
         document.documentElement.dir = translations[lang].dir;
+        const currentLang = translations[lang];
+        for (const key in currentLang) {
+            if (currentLang.hasOwnProperty(key)) {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = currentLang[key];
+                }
+            }
+        }
+    }
 
-        document.getElementById('navHome').textContent = translations[lang].navHome;
-        document.getElementById('openFranchise').textContent = translations[lang].openFranchise;
-        document.getElementById('openAboutus').textContent = translations[lang].openAboutus;
-        document.getElementById('navMap').textContent = translations[lang].navMap;
-        document.getElementById('navUber').textContent = translations[lang].navUber;
-        document.getElementById('navSTD').textContent = translations[lang].navSTD;
-
-        document.getElementById('gomanoushe').textContent = translations[lang].gomanoushe;
-        document.getElementById('subtext1').textContent = translations[lang].subtext1;
-        document.getElementById('gosalty').textContent = translations[lang].gosalty;
-        document.getElementById('gosalty1').innerHTML = translations[lang].gosalty1;
-        document.getElementById('gosalty2').innerHTML = translations[lang].gosalty2;
-        document.getElementById('gosalty3').innerHTML = translations[lang].gosalty3;
-        document.getElementById('gosalty4').innerHTML = translations[lang].gosalty4;
-        document.getElementById('gosalty5').innerHTML = translations[lang].gosalty5;
-        document.getElementById('gosalty6').innerHTML = translations[lang].gosalty6;
-        document.getElementById('gosalty7').innerHTML = translations[lang].gosalty7;
-        document.getElementById('gosalty8').innerHTML = translations[lang].gosalty8;
-        document.getElementById('gosalty9').innerHTML = translations[lang].gosalty9;
-        document.getElementById('gosalty10').innerHTML = translations[lang].gosalty10;
-        document.getElementById('gosalty11').innerHTML = translations[lang].gosalty11;
-        document.getElementById('gosalty12').innerHTML = translations[lang].gosalty12;
-        document.getElementById('gosalty13').innerHTML = translations[lang].gosalty13;
-
-
-        document.getElementById('gosweet').textContent = translations[lang].gosweet;
-        document.getElementById('gosweet1').innerHTML = translations[lang].gosweet1;
-        document.getElementById('gosweet2').innerHTML = translations[lang].gosweet2;
-        document.getElementById('gosweet3').innerHTML = translations[lang].gosweet3;
-
-        document.getElementById('golahmajoon').textContent = translations[lang].golahmajoon;
-        document.getElementById('subtext2').textContent = translations[lang].subtext2;
-        document.getElementById('gomeat').textContent = translations[lang].gomeat;
-        document.getElementById('gomeat1').innerHTML = translations[lang].gomeat1;
-        document.getElementById('gomeat2').innerHTML = translations[lang].gomeat2;
-        document.getElementById('gomeat3').innerHTML = translations[lang].gomeat3;
-
-        document.getElementById('gochicken').textContent = translations[lang].gochicken;
-        document.getElementById('gochicken1').innerHTML = translations[lang].gochicken1;
-
-        document.getElementById('goveggie').textContent = translations[lang].goveggie;
-        document.getElementById('goveggie1').innerHTML = translations[lang].goveggie1;
-
-        document.getElementById('gokaake').textContent = translations[lang].gokaake;
-        document.getElementById('subtext3').textContent = translations[lang].subtext3;
-        document.getElementById('go2salty').textContent = translations[lang].go2salty;
-        document.getElementById('go2salty1').innerHTML = translations[lang].go2salty1;
-        document.getElementById('go2salty2').innerHTML = translations[lang].go2salty2;
-        document.getElementById('go2salty3').innerHTML = translations[lang].go2salty3;
-        document.getElementById('go2salty4').innerHTML = translations[lang].go2salty4;
-        document.getElementById('go2salty5').innerHTML = translations[lang].go2salty5;
-        document.getElementById('go2salty6').innerHTML = translations[lang].go2salty6;
-        document.getElementById('go2salty7').innerHTML = translations[lang].go2salty7;
-        document.getElementById('go2salty8').innerHTML = translations[lang].go2salty8;
-        document.getElementById('go2salty9').innerHTML = translations[lang].go2salty9;
-        document.getElementById('go2salty10').innerHTML = translations[lang].go2salty10;
-        document.getElementById('go2salty11').innerHTML = translations[lang].go2salty11;
-        document.getElementById('go2salty12').innerHTML = translations[lang].go2salty12;
-
-        document.getElementById('go2sweet').textContent = translations[lang].go2sweet;
-        document.getElementById('go2sweet1').innerHTML = translations[lang].go2sweet1;
-        document.getElementById('go2sweet2').innerHTML = translations[lang].go2sweet2;
-        document.getElementById('go2sweet3').innerHTML = translations[lang].go2sweet3;
-        document.getElementById('go2sweet4').innerHTML = translations[lang].go2sweet4;
-        document.getElementById('go2sweet5').innerHTML = translations[lang].go2sweet5;
-        document.getElementById('go2sweet6').innerHTML = translations[lang].go2sweet6;
-        document.getElementById('go2sweet7').innerHTML = translations[lang].go2sweet7;
-
-        document.getElementById('goextra').textContent = translations[lang].goextra;
-        document.getElementById('sipsadditions').textContent = translations[lang].sipsadditions;
-        document.getElementById('addons').textContent = translations[lang].addons;
-        document.getElementById('addons1').innerHTML = translations[lang].addons1;
-        document.getElementById('addons2').innerHTML = translations[lang].addons2;
-        document.getElementById('addons3').innerHTML = translations[lang].addons3;
-        document.getElementById('addons4').innerHTML = translations[lang].addons4;
-        document.getElementById('addons5').innerHTML = translations[lang].addons5;
-        document.getElementById('addons6').innerHTML = translations[lang].addons6;
-        document.getElementById('addons7').innerHTML = translations[lang].addons7;
-        document.getElementById('addons8').innerHTML = translations[lang].addons8;
-
-        document.getElementById('onthego').textContent = translations[lang].onthego;
-        document.getElementById('chestnuts').textContent = translations[lang].chestnuts;
-        document.getElementById('chestnuts1').innerHTML = translations[lang].chestnuts1;
-        document.getElementById('chestnuts2').innerHTML = translations[lang].chestnuts2;
-
-        document.getElementById('godrinks').textContent = translations[lang].godrinks;
-        document.getElementById('godrinks1').innerHTML = translations[lang].godrinks1;
-        document.getElementById('godrinks2').innerHTML = translations[lang].godrinks2;
-        document.getElementById('godrinks3').innerHTML = translations[lang].godrinks3;
-        document.getElementById('godrinks4').innerHTML = translations[lang].godrinks4;
-        document.getElementById('godrinks5').innerHTML = translations[lang].godrinks5;
-
-        document.getElementById('franchiseTitle').textContent = translations[lang].franchiseTitle;
-        document.getElementById('franchiseReq1').textContent = translations[lang].franchiseReq1;
-        document.getElementById('franchiseReq2').textContent = translations[lang].franchiseReq2;
-        document.getElementById('franchiseReq3').textContent = translations[lang].franchiseReq3;
-        document.getElementById('franchiseReq4').textContent = translations[lang].franchiseReq4;
-        document.getElementById('franchiseReq5').textContent = translations[lang].franchiseReq5;
-        document.getElementById('franchiseInterest').textContent = translations[lang].franchiseInterest;
-        document.getElementById('franchiseEmail').textContent = translations[lang].franchiseEmail;
-
-        document.getElementById('aboutTitle').textContent = translations[lang].aboutTitle;
-        document.getElementById('aboutText1').textContent = translations[lang].aboutText1;
-        document.getElementById('aboutText2').textContent = translations[lang].aboutText2;
-        document.getElementById('aboutText3').textContent = translations[lang].aboutText3;
-        document.getElementById('aboutText4').textContent = translations[lang].aboutText4;
-        document.getElementById('aboutText5').textContent = translations[lang].aboutText5;
-
-        document.getElementById('copyright').textContent = translations[lang].copyright;
-        document.getElementById('location').textContent = translations[lang].location;
-        document.getElementById('followUs').textContent = translations[lang].followUs;
+    if (selectedLang != "") {
+        applyTranslations(selectedLang);
     }
 
 });

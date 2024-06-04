@@ -1,5 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    function setLanguageCookie(language, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = "selectedLang=" + language + ";" + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    const selectedLang = getCookie('selectedLang');
+
     const languageBtn = document.getElementById('language-btn');
     const languageOptions = document.getElementById('language-options');
     const langOptions = document.querySelectorAll('.lang-option');
@@ -12,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     langOptions.forEach(option => {
         option.addEventListener('click', (e) => {
             const selectedLang = e.target.getAttribute('data-lang');
+            setLanguageCookie(selectedLang);
             applyTranslations(selectedLang);
             languageOptions.style.display = 'none';
             languageBtn.style.display = 'block';
@@ -144,42 +170,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function applyTranslations(lang) {
+        const currentLang = translations[lang];
         document.documentElement.lang = translations[lang].setting;
         document.documentElement.dir = translations[lang].dir;
-        document.getElementById('welcome').textContent = translations[lang].welcome;
-        document.getElementById('navMenu').textContent = translations[lang].navMenu;
-        document.getElementById('openFranchise').textContent = translations[lang].openFranchise;
-        document.getElementById('openAboutus').textContent = translations[lang].openAboutus;
-        document.getElementById('navMap').textContent = translations[lang].navMap;
-        document.getElementById('navUber').textContent = translations[lang].navUber;
-        document.getElementById('navSTD').textContent = translations[lang].navSTD;
-        document.getElementById('welcomeText').textContent = translations[lang].welcomeText;
-        document.getElementById('seeMenu').textContent = translations[lang].seeMenu;
-        document.getElementById('hoursTitle').textContent = translations[lang].hoursTitle;
-        document.getElementById('hoursMon').textContent = translations[lang].hoursMon;
-        document.getElementById('hoursTue').textContent = translations[lang].hoursTue;
-        document.getElementById('hoursWed').textContent = translations[lang].hoursWed;
-        document.getElementById('hoursThu').textContent = translations[lang].hoursThu;
-        document.getElementById('hoursFri').textContent = translations[lang].hoursFri;
-        document.getElementById('hoursSat').textContent = translations[lang].hoursSat;
-        document.getElementById('hoursSun').textContent = translations[lang].hoursSun;
-        document.getElementById('franchiseTitle').textContent = translations[lang].franchiseTitle;
-        document.getElementById('franchiseReq1').textContent = translations[lang].franchiseReq1;
-        document.getElementById('franchiseReq2').textContent = translations[lang].franchiseReq2;
-        document.getElementById('franchiseReq3').textContent = translations[lang].franchiseReq3;
-        document.getElementById('franchiseReq4').textContent = translations[lang].franchiseReq4;
-        document.getElementById('franchiseReq5').textContent = translations[lang].franchiseReq5;
-        document.getElementById('franchiseInterest').textContent = translations[lang].franchiseInterest;
-        document.getElementById('franchiseEmail').textContent = translations[lang].franchiseEmail;
-        document.getElementById('aboutTitle').textContent = translations[lang].aboutTitle;
-        document.getElementById('aboutText1').textContent = translations[lang].aboutText1;
-        document.getElementById('aboutText2').textContent = translations[lang].aboutText2;
-        document.getElementById('aboutText3').textContent = translations[lang].aboutText3;
-        document.getElementById('aboutText4').textContent = translations[lang].aboutText4;
-        document.getElementById('aboutText5').textContent = translations[lang].aboutText5;
-        document.getElementById('copyright').textContent = translations[lang].copyright;
-        document.getElementById('location').textContent = translations[lang].location;
-        document.getElementById('followUs').textContent = translations[lang].followUs;
+        for (const key in currentLang) {
+            if (currentLang.hasOwnProperty(key)) {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = currentLang[key];
+                }
+            }
+        }
+    }
+
+    if (selectedLang != "") {
+        applyTranslations(selectedLang);
     }
 
 });
