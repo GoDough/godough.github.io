@@ -54,6 +54,7 @@ section ol {
     box-shadow: 0 0 0 5px white;
     border-radius: 10px;
     padding: 2em;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 ol li {
@@ -61,10 +62,6 @@ ol li {
     flex-direction: row;
     justify-content: space-between;
     margin-top: 1em;
-}
-
-.hoursOfOperation {
-    background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* Styles for smaller screens */
